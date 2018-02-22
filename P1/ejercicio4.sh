@@ -8,7 +8,7 @@ then
 	caracter="a"
 fi
 let b=0
-find . -maxdepth 1 -type d,f -name "*$caracter*" | ( while read f
+find . -maxdepth 1 -name "*$caracter*" | ( while read f
 do
 	a=$(echo $f | tr -cd $caracter | wc -c)
 	b=$[$a + $b]
