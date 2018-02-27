@@ -1,5 +1,9 @@
 #!/bin/bash
-if [ $# == 1 ];
+if [ $# == 0 ];
+then
+	echo "Error en la llamada al programa"
+	exit -1
+elif [ $# == 1 ];
 then
 	let tamano=0
 else
@@ -15,7 +19,5 @@ do
 	else
 		b=0
 	fi
-	echo `stat -c "$(basename $f);$a;%y;%X;%s;%b;%A;$b" $f` >> "ejercicio2tmp.txt"
-done
-cat ejercicio2tmp.txt | sort -t";" -n -k 5
-rm -rf ejercicio2tmp.txt
+	echo `stat -c "$(basename $f);$a;%y;%X;%s;%b;%A;$b" $f`
+done | sort -t";" -n -k 5

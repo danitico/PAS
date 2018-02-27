@@ -13,5 +13,4 @@ do
 	a=$(echo $f | tr -cd $caracter | wc -c)
 	b=$[$a + $b]
 done
-echo "El caracter $caracter aparece $b veces en nombres de ficheros o carpetas contenidas en la carpeta actual" )
-
+echo -e "\nEl caracter $caracter aparece $b veces en nombres de ficheros o carpetas contenidas en la carpeta actual" )

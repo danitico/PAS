@@ -13,9 +13,9 @@ then
 	let umbral2=$3
 else
 	echo "Se ha llamado mal al script"
-	exit
+	exit -1
 fi
-if [ -e pequenos/ -a -e medianos/ -a -e grandes/ ];
+if [ -e pequenos/ -o -e medianos/ -o -e grandes/ ];
 then
 	echo "Las carpetas de salida ya existen, se va a proceder a borrarlas..."
 	rm -rf pequenos/ medianos/ grandes/
@@ -38,4 +38,3 @@ do
 		cp $f grandes/
 	fi
 done
-
