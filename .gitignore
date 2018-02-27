@@ -1,8 +1,7 @@
 #carpeta de prueba
-P1/ejemploCarpeta
 P1/pequenos
 P1/medianos
 P1/grandes
 P1/salida.csv
 P1/copia
-P1/fichero.html
+P1/*.html
