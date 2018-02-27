@@ -1,11 +1,11 @@
 #!/bin/bash
 busquedacarpetas(){
 	echo "<ul>"
-	find $1 -maxdepth 1 | while read j
+	find $1 -maxdepth 1 | while read j #se busca solo en la carpeta, no en subdirectorios
 	do
-	if [ -d $j -a $j != $1 ];
+	if [ -d $j -a $j != $1 ]; #vemos si el fichero no es igual que la carpeta para no repetir nombres, quitese esta condicion para darse cuenta
 		then
-			echo "<li><strong>$(readlink -f $j)</strong></li>"
+			echo "<li><strong>$(readlink -f $j)</strong></li>" #readlink -f nos muestra el path entero del archivo
 			busquedacarpetas $j
 	elif [ -f $j ];
    then 
@@ -44,5 +44,5 @@ if [ $# != 1 ];
 then
 	echo "Error en la llamada al programa"
 else
-	creacionhtml $1 > "$(basename $1).html"
+	creacionhtml $1 > "$(basename $1).html" #La salida de la funcion creacionhtml se la pasamos al fichero <nombre_carpeta>.html
 fi
