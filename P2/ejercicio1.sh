@@ -7,7 +7,7 @@ echo "2) Lineas con el pais de las peliculas:"
 cat $1 | grep -E '\-(.*)-$'
 echo "*******"
 echo "3) Solo el país de las películas:"
-cat $1 | grep -E -o '\-(.*)-$' | grep -E -o '[^\-][[:alpha:]]*.[[:alpha:]]*.(..)*[[:alpha:]][^\-]'
+cat $1 | grep -E -o '\-(.*)-$' | grep -E -o '[^\-][[:alpha:]]*.[[:alpha:]]*.*[[:alpha:]][^\-]'
 echo "*******"
 echo "4) Hay `cat $1 | grep -E -c '2016'` del 2016 y `cat $1 | grep -E -c '2017'` del 2017"
 echo "*******"
