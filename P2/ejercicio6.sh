@@ -1,2 +1,2 @@
 #!/bin/bash
-cat /etc/passwd | grep -E $1 | sed -r -e 's/(.*):.*:(.*):(.*):(.*):(.*):(.*)/==========\nLogname: \1\n->UID: \2\n->Grupo: \3\n->GID: \4\n->Home: \5\n->Shell por defecto: \6/'
+cat /etc/passwd | grep -E $1 | sed -r -e 's/(.*):.*:(.*):(.*):.*:(.*):(.*)/==========\nLogname: \1\n->UID: \2\n->Grupo: \3\n->GID: \3\n->Home: \4\n->Shell por defecto: \5\n->Logeado: \1/' | sed -r -e 's/->Gr.*:.(.*)/\1/' | sed -r -e 's/^([0-9]*)$/cat \/etc\/group | grep -E .*:.*:\1/e' | sed -r -e 's/(^[^L-].*):.:.*/->Grupo: \1/' | sed -r -e 's/->Logeado:.(.*)/who | grep -E -c \1/e' | sed -r -e 's/^([0-1])/->Logeado: \1/'
