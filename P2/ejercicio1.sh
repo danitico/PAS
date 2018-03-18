@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ $# != 1 ]; then
+	echo "Se ha llamado mal al programa. Se necesita pasar un fichero por línea de argumentos"
+	exit
+fi
 echo "*******"
 echo "1)Lineas con la duracion de las peliculas:"
 cat $1 | grep -E '^[0-9]hr.[0-9][0-9]min'
