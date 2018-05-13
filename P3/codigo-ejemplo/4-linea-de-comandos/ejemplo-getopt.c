@@ -28,21 +28,21 @@ int main (int argc, char **argv)
      message by setting opterr to 0 */
     //Prueba a ejecutar el programa comentando esta linea, podrás observar como se obtiene un
     // error por defecto por la salida estandar, en este caso el terminal.
-    opterr = 0; 
+    opterr = 0;
 
     // "abc:" -> busca como opciones a y b sin argumentos y c con un argumento OBLIGATORIO.
     // ':' indica que la opcion debe llevar un argumento obligario
-    
+
     // getopt va iterando, y devuelve -1 si ya hemos consultado toda la linea de argumentos.
-    // Sino, devuelve el caracter de opción encontrado para caracteres validos 
+    // Sino, devuelve el caracter de opción encontrado para caracteres validos
     // o devuelve ? si el caracter no es valido segun la cadena especificada.
     while ((c = getopt (argc, argv, "abc:")) != -1)
     {
         // Podemos observar qué pasa con las variables externas que va gestionando
-        //   getopt() durante las sucesivas llamadas. 
+        //   getopt() durante las sucesivas llamadas.
         //   - optind Indice del siguiente elemento a procesar del vector argv[]
         //   - optarg recoge el valor del argumento obligario de una opcion.
-        //   - optopt recoge el valor de la opcion cuando es desconocida (?) o INCOMPLETA respecto a las opciones indicadas.        
+        //   - optopt recoge el valor de la opcion cuando es desconocida (?) o INCOMPLETA respecto a las opciones indicadas.
         switch (c)
         {
 		     case 'a':
@@ -57,6 +57,9 @@ int main (int argc, char **argv)
 		     case '?': //Opcion no reconocida o INCOMPLETA. Probar tambien la diferencia entre ejecutar %$>./a.out m   ó   %$>./a.out -m
 		         if (optopt == 'c') //Para el caso de que 'c' no tenga el argumento obligatorio.
 		             fprintf (stderr, "La opción %c requiere un argumento. Valor de opterr = %d\n", optopt, opterr);
+
+
+
 		         else if (isprint (optopt)) //Se mira si el caracter es imprimible
 		             fprintf (stderr, "Opción desconocida \"-%c\". Valor de opterr = %d\n", optopt, opterr);
 		         else //Caracter no imprimible o especial
@@ -70,7 +73,7 @@ int main (int argc, char **argv)
 
     //Este último bucle controla opciones introducidas por el usuario que no hayan sido procesadas
     //por ser no reconocidas al no llevar un guion "-" delante.
-    //Compara el número de argumentos recibidos con el número de opciones reconocidas mediante "-". 
+    //Compara el número de argumentos recibidos con el número de opciones reconocidas mediante "-".
     //Como getopt() internamente reordena los valores de argv, las primeras posiciones de argv
     //corresponden a opciones conocidas y las últimas, a partir de optind, a opciones no reconocidas.
 
@@ -84,8 +87,6 @@ int main (int argc, char **argv)
 
     //Para visualizar que opciones se han activado y sus argumentos
     printf ("aflag = %d, bflag = %d, cvalue = %s\n", aflag, bflag, cvalue);
-    
+
     return 0;
 }
-
-

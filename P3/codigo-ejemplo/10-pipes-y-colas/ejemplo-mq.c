@@ -38,7 +38,7 @@ int main()
 		case -1:
 			printf ("No he podido crear el proceso hijo \n");
 			exit(1);
-
+		
 		case 0: // Hijo. El hijo solo se encargará de escribir.
 
 			/* Apertura de la cola
@@ -56,12 +56,12 @@ int main()
 				exit(-1);
 			}
 			printf ("[HIJO]: mi PID es %d y mi PPID es %d\n", getpid(), getppid());
-
+			
 			/* Rellenamos el buffer que vamos a enviar
 			   Semilla de los números aleatorios, establecida a la hora actual*/
 			srand(time(NULL));
 			// Número aleatorio entre 0 y 4999
-			numeroAleatorio = rand()%5000;
+			numeroAleatorio = rand()%5000;			
 			sprintf(buffer,"%d",numeroAleatorio);
 			printf("[HIJO]: generado el mensaje \"%s\"\n", buffer);
 
@@ -82,12 +82,12 @@ int main()
 				exit(-1);
 			}
 			break; //Saldría del switch()
-
+		
 		default: // Padre. El padre solo se encargará de leer
 
 			/* Apertura de la cola */
 			mq = mq_open(QUEUE_NAME, O_CREAT | O_RDONLY, 0644, &attr);
-
+			
 			if(mq==-1)
 			{
 				perror("[PADRE]: Error en la apertura de la cola");
@@ -102,9 +102,9 @@ int main()
 			if(resultado <= 0)
 			{
 				perror("[PADRE]: Error al recibir el mensaje");
-				exit(-1);
+				exit(-1);			
 			}
-
+			
 			// Imprimimos el mensaje recibido
 			printf("[PADRE]: el mensaje recibido es \"%s\"\n", buffer);
 
@@ -122,11 +122,11 @@ int main()
 				perror("[PADRE]: Error eliminando la cola");
 				exit(-1);
 			}
-
+      
     	/*Espera del padre a los hijos*/
-	   while ( (flag=wait(&status)) > 0 )
+	   while ( (flag=wait(&status)) > 0 ) 
 	   {
-		   if (WIFEXITED(status))
+		   if (WIFEXITED(status)) 
 		   {
 			   printf("Proceso Padre, Hijo con PID %ld finalizado, status = %d\n", (long int)flag, WEXITSTATUS(status));
 		   } else if (WIFSIGNALED(status)) {  //Para seniales como las de finalizar o matar
@@ -146,6 +146,6 @@ int main()
 		   printf("Error en la invocacion de wait o la llamada ha sido interrumpida por una señal.\n");
 		   exit(EXIT_FAILURE);
 	   }
-	}
+	}   	 	 
 	exit(0);
 }

@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	mqd_t mq_server;
 	// Buffer para intercambiar mensajes
 	char buffer[MAX_SIZE];
-
+	
 	// Abrir la cola del servidor. La cola CLIENT_QUEUE le servira en ejercicio resumen
 	mq_server = mq_open(SERVER_QUEUE, O_WRONLY);
 	if(mq_server == (mqd_t)-1 )

@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
 
     // En el caso de que no se ha introducido ningún nombre de usuario,
     // por defecto en lgn almacenara el usuario que ha ejecutado este programa
-    
-    // OJO, NO USAR getlogin() porque no funciona en determinados sistemas, depende del 
+
+    // OJO, NO USAR getlogin() porque no funciona en determinados sistemas, depende del
     // terminal y unos ficheros asociados a el, es mejor coger el usuario actual a partir
     // de la variable de entorno USER (getenv("USER")) y pasarselo a getpwnam(). Modifique el programa para ello.
     if (argc < 2)
@@ -67,4 +67,3 @@ int main(int argc, char *argv[])
 	exit(0);
 
 }
-
